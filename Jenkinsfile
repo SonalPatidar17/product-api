@@ -1,28 +1,30 @@
 pipeline {
-
   agent any
-  
   stages {
-    stage('Build') {
+    stage('Build Application') { 
       steps {
-            bat 'mvn -B -U -e -V clean -DskipTests package'
+        bat 'mvn clean install'
       }
     }
-
-    stage('Test') {
+ 	stage('Test') { 
       steps {
-          echo "****** munit test cases execution******"
+        echo 'Test Appplication...' 
+        
       }
     }
-
-    stage('Deployment') {
+ 	
+   
+	stage('Deploy CloudHub') { 
       environment {
         ANYPOINT_CREDENTIALS = credentials('anypointPlatform')
       }
-     
+            
       steps {
-            bat 'mvn -U -V -e -B -DskipTests -Pdev deploy -DmuleDeploy'
+        echo 'Deploying only because of code commit...'
+        echo 'Deploying to  dev environent....'
+        bat 'mvn -X package -Pdev deploy'
       }
-    }
+	  
+	}
   }
 }
