@@ -20,9 +20,6 @@ http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/sc
 		api="product-api.raml" outboundHeadersMapName="outboundHeaders"
 		httpStatusVarName="httpStatus" />
 	<api-gateway:autodiscovery apiId="${apiId}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="f5938faf-a026-4cf8-b605-d07bd254be3c" flowRef="product-api-main" />
-	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="ca945944-cf82-4615-8c96-6099ceb2a422" file="properties/${MULE_ENV}.yaml" key="${secret.key}" >
-		<secure-properties:encrypt algorithm="Blowfish" />
-	</secure-properties:config>
 	<configuration-properties doc:name="Configuration properties" doc:id="7106d325-0d61-41bd-8646-65f97d334f48" file="properties/${MULE_ENV}.yaml"/>
 
 
