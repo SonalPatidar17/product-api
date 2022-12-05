@@ -21,8 +21,8 @@ pipeline {
             
       steps {
         echo 'Deploying only because of code commit...'
-        echo 'Deploying to  dev environent....'
-        bat 'mvn -X package -Pdev deploy'
+        echo 'Deploying to  test environent....'
+        bat 'mvn -X package -Ptest deploy'
       }
 	  
 	}
