@@ -16,10 +16,13 @@ pipeline {
     }
 
     stage('Deployment') {
-     
-      steps {
-            bat 'mvn package -Ptest deploy -DmuleDeploy'
-      }
-    }
+			environment {
+				ANYPOINT_CREDENTIALS = credentials('anypointPlatform')
+			}
+            steps {
+                echo 'Deploying....'
+				bat 'mvn package -Ptest deploy -DmuleDeploy -Dusername=${ANYPOINT_CREDENTIALS_USR} -Dpassword=${ANYPOINT_CREDENTIALS_PSW}'
+            }
+        }
   }
 }
