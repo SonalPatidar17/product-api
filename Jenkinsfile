@@ -1,22 +1,25 @@
 pipeline {
-    agent any
 
-    stages {
-        stage('Build Application') {
-            steps {
-                echo 'Building..'
-				bat 'mvn clean install'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-				  }
-        }
-        stage('Deploy CloudHub') {
-			 steps {
-                echo 'Deploying....'
-				bat 'mvn package -Ptest deploy -DmuleDeploy            }
-        }
+  agent any
+  
+  stages {
+    stage('Build') {
+      steps {
+            bat 'mvn clean install'
+      }
     }
+
+    stage('Test') {
+      steps {
+          echo "****** munit test cases execution******"
+      }
+    }
+
+    stage('Deployment') {
+     
+      steps {
+            bat ''mvn package -Ptest deploy -DmuleDeploy'
+      }
+    }
+  }
 }
