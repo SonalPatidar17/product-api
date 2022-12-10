@@ -1,28 +1,30 @@
 pipeline {
-
   agent any
-  
   stages {
-    stage('Build') {
+    stage('Build Application') { 
       steps {
-            bat 'mvn clean install'
+        bat 'mvn clean install'
       }
     }
-
-    stage('Test') {
+ 	stage('Test') { 
       steps {
-          echo "****** munit test cases execution******"
+        echo 'Test Appplication...' 
+      
       }
     }
-
-    stage('Deployment') {
-			environment {
-				ANYPOINT_CREDENTIALS = credentials('anypointPlatform')
-			}
-            steps {
-                echo 'Deploying....'
-				bat 'mvn package -Ptest deploy -DmuleDeploy -Dusername=${ANYPOINT_CREDENTIALS_USR} -Dpassword=${ANYPOINT_CREDENTIALS_PSW}'
-            }
-        }
+ 	
+   
+	stage('Deploy CloudHub') { 
+      environment {
+        ANYPOINT_CREDENTIALS = credentials('anypointPlatform')
+      }
+            
+      steps {
+        echo 'Deploying only because of code commit...'
+        echo 'Deploying to  dev environent....'
+        bat 'mvn -X package deploy -DmuleDeploy'
+      }
+	  
+	}
   }
 }
