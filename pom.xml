@@ -40,7 +40,7 @@
 						      <deploymentSettings>
 						        <http>
 						          <inbound>
-						            <publicUrl>${publicURL}</publicUrl>
+						            <publicUrl>myapp.anypoint.com</publicUrl>
 						            <forwardSslSession>true</forwardSslSession>
 						            <lastMileSecurity>true</lastMileSecurity>
 						          </inbound>
