@@ -14,15 +14,15 @@ pipeline {
     }
  	
    
-	stage('Deploy CloudHub') { 
+	stage('Deploy CloudHub2.0') { 
       environment {
-        ANYPOINT_CREDENTIALS = credentials('anypointPlatform')
+        ANYPOINT_CREDENTIALS = credentials('anypoint.credentials')
       }
             
       steps {
         echo 'Deploying only because of code commit...'
-        echo 'Deploying to  dev environent....'
-        bat 'mvn -X package deploy -Pdev -DmuleDeploy -Dusername=sonalpatidar17Nov -Dpassword=SonalMule@123'
+        echo 'Deploying to dev environent....'
+        bat 'mvn clean deploy -Pdev -DmuleDeploy'
       }
 	  
 	}
